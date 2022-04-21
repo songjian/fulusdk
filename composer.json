@@ -1,0 +1,28 @@
+{
+    "name": "songjian/fuluapi",
+    "authors": [
+        {
+            "name": "songjian",
+            "email": "songjian@codeorder.cn",
+            "role": "Developer",
+            "homepage": "https://codeorder.cn/"
+        }
+    ],
+    "description": "福禄SDK",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/songjian/fulu",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fulu\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test/"
+        }
+    }
+}
