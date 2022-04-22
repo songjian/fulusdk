@@ -1,6 +1,8 @@
 # 福禄开放平台SDK
 
-自己实现的调用福禄API的SDK。福禄开放平台地址：[https://open.fulu.com/](https://open.fulu.com/)
+自己实现的调用福禄API的SDK。
+
+福禄开放平台地址：[https://open.fulu.com/](https://open.fulu.com/)
 
 ## 使用Composer安装
 
