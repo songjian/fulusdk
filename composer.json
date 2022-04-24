@@ -11,7 +11,7 @@
     "description": "福禄SDK",
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/songjian/fulu",
+    "homepage": "https://github.com/songjian/fulusdk",
     "require-dev": {
         "phpunit/phpunit": "^7.5"
     },
