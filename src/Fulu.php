@@ -192,6 +192,38 @@ class Fulu
    }
 
    /**
+    * 卡密下单接口
+    *
+    * @param [int] $product_id
+    * @param [int] $buy_num
+    * @param [string] $customer_order_no
+    * @param [double] $customer_price
+    * @param [string] $shop_type
+    * @param [string] $external_biz_id
+    * @return void
+    */
+   public function orderCardAdd(
+      $product_id,
+      $buy_num,
+      $customer_order_no,
+      $customer_price,
+      $shop_type = null,
+      $external_biz_id = null
+   ) {
+      return $this->api(
+         'fulu.order.card.add',
+         [
+            'product_id' => $product_id,
+            'buy_num' => $buy_num,
+            'customer_order_no' => $customer_order_no,
+            'customer_price' => $customer_price,
+            'shop_type' => $shop_type,
+            'external_biz_id' => $external_biz_id
+         ]
+      );
+   }
+
+   /**
     * 获取商品模板接口
     *
     * @param [string] $template_id
@@ -217,5 +249,13 @@ class Fulu
          'customer_order_no' => $customer_order_no
       );
       return $this->api('fulu.order.info.get', $biz_content);
+   }
+
+   public function decode($enpass)
+   {
+      $encryptString = base64_decode($enpass);
+      $decryptedpass = rtrim(openssl_decrypt($encryptString, 'aes-256-ecb', $this->AppSecret, OPENSSL_RAW_DATA));
+
+      return trim($decryptedpass);
    }
 }
