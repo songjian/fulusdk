@@ -23,7 +23,7 @@ $fulu->$fulu->orderMobileAdd('15972368779', 100, [CUSTOMER_ORDER_NO]);
 ## 运行PHPUnit测试
 
 ```sh
-vendor/bin/phpunit test/FuluTest.php
+vendor/bin/phpunit test/
 ```
 
 ## 示例
