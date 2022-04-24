@@ -12,11 +12,8 @@ class FuluTest extends \PHPUnit\Framework\TestCase
     {
         $customer_order_no = $this->uuid();
 
-        $fulu = new \Fulu\Fulu(
-            'i4esv1l+76l/7NQCL3QudG90Fq+YgVfFGJAWgT+7qO1Bm9o/adG/1iwO2qXsAXNB',
-            '0a091b3aa4324435aab703142518a8f7',
-            true
-        );
+        $fulu = new \Fulu\Fulu('', '');
+        $fulu->sandbox(true);
         $ret = $fulu->orderMobileAdd('15972368779', 100, $customer_order_no);
         // print_r($ret);
         $this->assertArrayHasKey('code', $ret);
@@ -36,11 +33,8 @@ class FuluTest extends \PHPUnit\Framework\TestCase
      */
     public function testOrderInfoGet($customer_order_no)
     {
-        $fulu = new \Fulu\Fulu(
-            'i4esv1l+76l/7NQCL3QudG90Fq+YgVfFGJAWgT+7qO1Bm9o/adG/1iwO2qXsAXNB',
-            '0a091b3aa4324435aab703142518a8f7',
-            true
-        );
+        $fulu = new \Fulu\Fulu('', '');
+        $fulu->sandbox(true);
         $ret = $fulu->orderInfoGet($customer_order_no);
         // print_r($ret);
         $this->assertArrayHasKey('code', $ret);

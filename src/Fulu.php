@@ -10,12 +10,25 @@ class Fulu
    var $AppKey = '';
    var $AppSecret = '';
 
-   public function __construct($app_key, $app_secret, $sandbox = false)
+   public function __construct($app_key, $app_secret)
    {
       $this->AppKey = $app_key;
       $this->AppSecret = $app_secret;
-      if ($sandbox)
+   }
+
+   /**
+    * 使用沙箱环境
+    *
+    * @param boolean $enable
+    * @return void
+    */
+   public function sandbox($enable = false)
+   {
+      if ($enable) {
          $this->url = 'https://pre-openapi.fulu.com/api/getway';
+         $this->AppKey = 'i4esv1l+76l/7NQCL3QudG90Fq+YgVfFGJAWgT+7qO1Bm9o/adG/1iwO2qXsAXNB';
+         $this->AppSecret = '0a091b3aa4324435aab703142518a8f7';
+      }
    }
 
    /**
@@ -45,6 +58,13 @@ class Fulu
       return preg_split('/(?<!^)(?!$)/u', $str);
    }
 
+   /**
+    * 调用福禄api
+    *
+    * @param [type] $method
+    * @param [type] $biz_content
+    * @return void
+    */
    function api($method, $biz_content)
    {
 

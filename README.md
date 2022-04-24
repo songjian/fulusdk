@@ -10,11 +10,18 @@
 composer require songjian/fulusdk
 ```
 
-## 沙箱环境使用
+## 使用沙箱环境
+
+Fulu类实例化时app_key和app_secret参数传任意值，实例化后调用`sandbox(true)`方法。
 
 ```php
-$sandbox_app_key = 'i4esv1l+76l/7NQCL3QudG90Fq+YgVfFGJAWgT+7qO1Bm9o/adG/1iwO2qXsAXNB';
-$sandbox_app_secret = '0a091b3aa4324435aab703142518a8f7';
-$fulu = new \Fulu\Fulu($sandbox_app_key, $sandbox_app_secret, true);
+$fulu = new \Fulu\Fulu('', '');
+$fulu->sandbox(true);
 $fulu->$fulu->orderMobileAdd('15972368779', 100, [CUSTOMER_ORDER_NO]);
+```
+
+## 运行PHPUnit测试
+
+```sh
+vendor/bin/phpunit test/FuluTest.php
 ```
