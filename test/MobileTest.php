@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . "/../vendor/autoload.php");
 
-class FuluTest extends \PHPUnit\Framework\TestCase
+class MobileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * 话费充值
@@ -33,6 +33,7 @@ class FuluTest extends \PHPUnit\Framework\TestCase
      */
     public function testOrderInfoGet($customer_order_no)
     {
+        sleep(8);
         $fulu = new \Fulu\Fulu();
         $fulu->sandbox(true);
         $r = $fulu->orderInfoGet($customer_order_no);
@@ -44,46 +45,7 @@ class FuluTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $r['code']);
         $result = json_decode($r['result'], true);
         $this->assertEquals($customer_order_no, $result['customer_order_no']);
-        $this->assertEquals('untreated', $result['order_state']);
-    }
-
-    /**
-     * 测试卡密类商品下单
-     *
-     * @return void
-     */
-    public function testOrderCardAdd()
-    {
-        $fulu = new \Fulu\Fulu();
-        $fulu->sandbox(true);
-        $customer_order_no = $this->uuid();
-        $r = $fulu->orderCardAdd('10000587', 1, $customer_order_no, 20);
-        // print_r($r);
-        $this->assertArrayHasKey('code', $r);
-        $this->assertArrayHasKey('message', $r);
-        $this->assertArrayHasKey('result', $r);
-        $this->assertArrayHasKey('sign', $r);
-        $this->assertEquals(0, $r['code']);
-        $result = json_decode($r['result'], true);
-        $this->assertEquals($customer_order_no, $result['customer_order_no']);
-    }
-
-    /**
-     * 获取商品模板接口
-     *
-     * @return void
-     */
-    public function testGoodsTemplateGet()
-    {
-        $fulu = new \Fulu\Fulu();
-        $fulu->sandbox(true);
-        $r = $fulu->goodsTemplateGet('70bb5598-1aef-422e-86ef-a68ae6de79e8');
-        // print_r($r);
-        $this->assertArrayHasKey('code', $r);
-        $this->assertArrayHasKey('message', $r);
-        $this->assertArrayHasKey('result', $r);
-        $this->assertArrayHasKey('sign', $r);
-        $this->assertEquals(3007, $r['code']);
+        $this->assertEquals('success', $result['order_state']);
     }
 
     function uuid()
