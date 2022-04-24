@@ -10,7 +10,7 @@ class Fulu
    var $AppKey = '';
    var $AppSecret = '';
 
-   public function __construct($app_key, $app_secret)
+   public function __construct($app_key = '', $app_secret = '')
    {
       $this->AppKey = $app_key;
       $this->AppSecret = $app_secret;
@@ -113,15 +113,17 @@ class Fulu
       $shop_type = NULL,
       $external_bizId = NULL
    ) {
-      $biz_content = array(
-         'charge_phone' => $charge_phone,
-         'charge_value' => $charge_value,
-         'customer_order_no' => $customer_orderNo,
-         'customer_price' => $customer_price,
-         'shop_type' => $shop_type,
-         'external_biz_id' => $external_bizId
+      return $this->api(
+         'fulu.order.mobile.add',
+         [
+            'charge_phone' => $charge_phone,
+            'charge_value' => $charge_value,
+            'customer_order_no' => $customer_orderNo,
+            'customer_price' => $customer_price,
+            'shop_type' => $shop_type,
+            'external_biz_id' => $external_bizId
+         ]
       );
-      return $this->api('fulu.order.mobile.add', $biz_content);
    }
 
    /**
@@ -165,26 +167,42 @@ class Fulu
       $shop_type = NULL,
       $external_biz_id = NULL
    ) {
-      $biz_content = array(
-         'product_id' => $product_id,
-         'customer_order_no' => $customer_order_no,
-         'charge_account' => $charge_account,
-         'buy_num' => $buy_num,
-         'charge_game_name' => $charge_game_name,
-         'charge_game_region' => $charge_game_region,
-         'charge_game_srv' => $charge_game_srv,
-         'charge_type' => $charge_type,
-         'charge_password' => $charge_password,
-         'charge_ip' => $charge_ip,
-         'contact_qq' => $contact_qq,
-         'contact_tel' => $contact_tel,
-         'remaining_number' => $remaining_number,
-         'charge_game_role' => $charge_game_role,
-         'customer_price' => $customer_price,
-         'shop_type' => $shop_type,
-         'external_biz_id' => $external_biz_id,
+      return $this->api(
+         'fulu.order.direct.add',
+         [
+            'product_id' => $product_id,
+            'customer_order_no' => $customer_order_no,
+            'charge_account' => $charge_account,
+            'buy_num' => $buy_num,
+            'charge_game_name' => $charge_game_name,
+            'charge_game_region' => $charge_game_region,
+            'charge_game_srv' => $charge_game_srv,
+            'charge_type' => $charge_type,
+            'charge_password' => $charge_password,
+            'charge_ip' => $charge_ip,
+            'contact_qq' => $contact_qq,
+            'contact_tel' => $contact_tel,
+            'remaining_number' => $remaining_number,
+            'charge_game_role' => $charge_game_role,
+            'customer_price' => $customer_price,
+            'shop_type' => $shop_type,
+            'external_biz_id' => $external_biz_id
+         ]
       );
-      return $this->api('fulu.order.direct.add', $biz_content);
+   }
+
+   /**
+    * 获取商品模板接口
+    *
+    * @param [string] $template_id
+    * @return void
+    */
+   public function goodsTemplateGet($template_id)
+   {
+      return $this->api(
+         'fulu.goods.template.get',
+         ['template_id' => $template_id]
+      );
    }
 
    /**

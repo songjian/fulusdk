@@ -12,16 +12,16 @@ class FuluTest extends \PHPUnit\Framework\TestCase
     {
         $customer_order_no = $this->uuid();
 
-        $fulu = new \Fulu\Fulu('', '');
+        $fulu = new \Fulu\Fulu();
         $fulu->sandbox(true);
-        $ret = $fulu->orderMobileAdd('15972368779', 100, $customer_order_no);
-        // print_r($ret);
-        $this->assertArrayHasKey('code', $ret);
-        $this->assertArrayHasKey('message', $ret);
-        $this->assertArrayHasKey('result', $ret);
-        $this->assertArrayHasKey('sign', $ret);
-        $this->assertEquals('0', $ret['code']);
-        $result = json_decode($ret['result'], true);
+        $r = $fulu->orderMobileAdd('15972368779', 100, $customer_order_no);
+        // print_r($r);
+        $this->assertArrayHasKey('code', $r);
+        $this->assertArrayHasKey('message', $r);
+        $this->assertArrayHasKey('result', $r);
+        $this->assertArrayHasKey('sign', $r);
+        $this->assertEquals(0, $r['code']);
+        $result = json_decode($r['result'], true);
         $this->assertEquals($customer_order_no, $result['customer_order_no']);
         return $customer_order_no;
     }
@@ -33,18 +33,31 @@ class FuluTest extends \PHPUnit\Framework\TestCase
      */
     public function testOrderInfoGet($customer_order_no)
     {
-        $fulu = new \Fulu\Fulu('', '');
+        $fulu = new \Fulu\Fulu();
         $fulu->sandbox(true);
-        $ret = $fulu->orderInfoGet($customer_order_no);
-        // print_r($ret);
-        $this->assertArrayHasKey('code', $ret);
-        $this->assertArrayHasKey('message', $ret);
-        $this->assertArrayHasKey('result', $ret);
-        $this->assertArrayHasKey('sign', $ret);
-        $this->assertEquals('0', $ret['code']);
-        $result = json_decode($ret['result'], true);
+        $r = $fulu->orderInfoGet($customer_order_no);
+        // print_r($r);
+        $this->assertArrayHasKey('code', $r);
+        $this->assertArrayHasKey('message', $r);
+        $this->assertArrayHasKey('result', $r);
+        $this->assertArrayHasKey('sign', $r);
+        $this->assertEquals(0, $r['code']);
+        $result = json_decode($r['result'], true);
         $this->assertEquals($customer_order_no, $result['customer_order_no']);
         $this->assertEquals('untreated', $result['order_state']);
+    }
+
+    public function testGoodsTemplateGet()
+    {
+        $fulu = new \Fulu\Fulu();
+        $fulu->sandbox(true);
+        $r = $fulu->goodsTemplateGet('70bb5598-1aef-422e-86ef-a68ae6de79e8');
+        // print_r($r);
+        $this->assertArrayHasKey('code', $r);
+        $this->assertArrayHasKey('message', $r);
+        $this->assertArrayHasKey('result', $r);
+        $this->assertArrayHasKey('sign', $r);
+        $this->assertEquals(3007, $r['code']);
     }
 
     function uuid()
