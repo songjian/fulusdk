@@ -17,7 +17,7 @@ Fulu类实例化时app_key和app_secret参数传任意值，实例化后调用`s
 ```php
 $fulu = new \Fulu\Fulu();
 $fulu->sandbox(true);
-$fulu->$fulu->orderMobileAdd('15972368779', 100, [CUSTOMER_ORDER_NO]);
+$r = $fulu->orderMobileAdd('15972368779', 100, [CUSTOMER_ORDER_NO]);
 ```
 
 ## 运行PHPUnit测试
