@@ -232,9 +232,23 @@ class Fulu
    public function goodsInfoGet($product_id)
    {
       return $this->api(
-         'fulu.goods.info.get',
-         ['product_id' => $product_id]
+          'fulu.goods.info.get',
+          ['product_id' => $product_id]
       );
+   }
+
+   /**
+    * 获取商品模板接口
+    * 
+    * @param [string] $template_id
+    * @return void
+    */
+   public function goodsTemplateGet($template_id)
+   {
+       return $this->api(
+           'fulu.goods.template.get',
+           ['template_id' => $template_id]
+       );
    }
 
    /**
