@@ -224,16 +224,16 @@ class Fulu
    }
 
    /**
-    * 获取商品模板接口
+    * 获取商品信息接口
     *
-    * @param [string] $template_id
+    * @param [string] $product_id
     * @return void
     */
-   public function goodsTemplateGet($template_id)
+   public function goodsInfoGet($product_id)
    {
       return $this->api(
-         'fulu.goods.template.get',
-         ['template_id' => $template_id]
+         'fulu.goods.info.get',
+         ['product_id' => $product_id]
       );
    }
 
